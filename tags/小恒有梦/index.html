@@ -6,7 +6,7 @@
     <meta name="referrer" content="origin">
     <meta http-equiv="Cache-Control" content="no-transform">
     <meta http-equiv="Cache-Control" content="no-siteapp">
-    <title>用户和租管理</title>
+    <title>标签 - 小恒有梦</title>
 
     <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/font/LongCang.css">
     <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/font/Monda.css">
@@ -17,116 +17,61 @@
     <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/font/Rosario.css">
     <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/font/UbuntuMono.css">
 
-    <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/css/post.css">
-    
-        <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/css/normal.css">
-    
+    <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/css/index.css">
 
     <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/js/jquery-3.4.1.min.js"></script>
-
 <meta name="generator" content="Hexo 5.4.0"></head>
 <body>
     <a id="cover"></a>
     <div id="header">
-    <div class="header">
+    <div class="header" >
         <div class="vertical">
             <div class="inner">
-                <h1 class="header-subtitle">用户和租管理</h1>
-                <div class="header-subinfo">
-                    <p class="article-info-text">
-                        <span>
-                            <i class="iconfont icon-time"></i> 发表时间：2021-06-30
-                        </span>
-                        
-                            <span id="/2021/06/30/用户和租管理/" class="leancloud_visitors" data-flag-title="用户和租管理">
-                                <i class="iconfont icon-browse"></i> 阅读：<sapn class="leancloud-visitors-count"></span>
-                            </span>
-                        
-                        <span>
-                            <i class="iconfont icon-interactive"></i> 评论：<span class="valine-comment-count" data-xid="/2021/06/30/用户和租管理/"></span>
-                        </span>  
-                    </p>                 
-                </div>
+                <h1 class="header-title"></h1>
+                <h2 class="header-description" id="hitokoto"></h2>
+                <h3 class="header-info" id="hitokotoAuthor"></h3>
+                <!--
+                <h1 class="header-subtitle"></h1>
+                <p class="header-subinfo"></p>
+                -->
             </div>
         </div>
-        <canvas id="articleHeaderCanvas"></canvas>
+        <a class="scroll-down" href="javascript:;" target="_self" data-offset="-45">
+            <span class="hidden">Scroll Down</span>
+            <i class="scroll-down-icon iconfont icon-return"></i>
+        </a>
     </div>
 </div>
     <div id="container">
     <div id="content">
-        <div id="article">
-    <div class="toc"></div>
-    <div class="article-body">
-        <h1 id="Linux用户和组管理"><a href="#Linux用户和组管理" class="headerlink" title="Linux用户和组管理"></a>Linux用户和组管理</h1><p>基础知识<br>    Linux用户<br>        管理员：root 0<br>        普通用户：1-65535<br>            系统用户：1-499，1-999<br>            登录用户：500+，1000+<br>    Linux组<br>        管理员组：root 0<br>        普通组：1-65535<br>            系统组：1-499，1-999<br>            登录组：500+，1000+<br>    组类别<br>        基本组<br>            当创建一个用户时，会自动产生一个与用户名相同的组名，且仅包含当前用户<br>        附加组<br>            一个用户可以属于多个附加组<br>    Linux安全上下文<br>        运行中的程序叫做进程<br>        进程能够访问的所有资源的权限取决于进程发起者的身份<br>    用户和组的相关配置文件<br>        /etc/passwd：用户及其属性信息（用户名、uid等等）<br>        /etc/group：组及其属性信息<br>        /etc/shadow：用户密码及其相关属性信息<br>        /etc/gshadow：组密码及其相关属性信息<br>    配置文件详解<br>        [root@localhost ~]# cat /etc/passwd | head -n 1<br>        root ​x:0:0:root:/root:/bin/bash<br>        用户名：密码：uid：gid：用户注释信息：用户家目录：登录shell</p>
-<pre><code>    [root@localhost ~]# cat /etc/group 
-    组名称：密码：组id：用户列表
+        <div class="articles">
     
-    [root@localhost ~]# cat /etc/shadow
-    登录名：加密了的密码：最近一次更改密码的日期：密码的最小使用期限：最大密码使用期限：密码警告时间：
-        密码禁用使用：账户过期日期：保留字段
-</code></pre>
-<h1 id="useradd命令"><a href="#useradd命令" class="headerlink" title="useradd命令"></a>useradd命令</h1><p>​    -u：指定uid<br>​    -g：指定gid<br>​    -c：指定用户注释信息<br>​    -d：指定用户家目录<br>​    -s：指定登录shell<br>​    -G：指定附加组<br>​    -r：创建系统用户<br>userdel命令<br>​    -r：连同用户家目录一起删除<br>usermod命令<br>​    -aG：将用户添加到附加组<br>​    -dm：移动用户新登录家目录<br>​    -L：锁定用户<br>​    -U：解锁用户</p>
-<h1 id="passwd命令"><a href="#passwd命令" class="headerlink" title="passwd命令"></a>passwd命令</h1><p>​    -n mixdays：指定最短使用期限<br>​    -x maxdays：指定最长使用期限<br>​    -w warndays：提前多少天开始警告<br>​    -i：非活动期限<br>​    –stdin：从标准输入接受用户密码<br>​    [root@localhost ~]# echo “1” | passwd –stdin lisi<br>案例<br>​    创建用户gentoo、附加组尾distro、linux，默认shell为/bin/csh，注释信息为“GENTOO”<br>​    [root@localhost ~]# useradd -G distro,linux -s /bin/bash -c “GENTOO” gentoo<br>组管理<br>​    groupadd<br>​        -g指定组id<br>​        -r：创建系统组<br>​    groupdel<br>​    groupmod<br>​    gpasswd<br>相关命令<br>​    id：可以查看到用户及其组的信息<br>​        -g：输出gid<br>​        -G：输出附加组<br>​        -u：输出uid<br>​        -n：输出name替代id<br>​    su：可以切换用户环境<br>​        su username：切换用户，不读取用户配置信息<br>​        su - username：切换用户，完全切换<br>​        su - userame -c command：切换用户执行命令<br>​    sudo：用户提权root权限</p>
-<h1 id="用户权限管理"><a href="#用户权限管理" class="headerlink" title="用户权限管理"></a>用户权限管理</h1><p>​    文件的权限管理主要针对三类对象定义<br>​        属主；u<br>​        属组：g<br>​        其他：o<br>​    每个文件针对每类对象都有三种权限<br>​        r：可读，4<br>​        w：棵写，2<br>​        x：可以执行，1<br>​    对于普通文件<br>​        r：可以使用文件查看类工具获取其内容，比如ls<br>​        w：可以修改类工具<br>​        x：可以把此文件启动为一个进程<br>​    对于目录来说<br>​        r：可以使用ls命令查看此文件列表<br>​        w：可以在此目录中创建文件，也可以在此目录中删除文件<br>​        x：可以使用cd命令进入到此目录中<br>​    举例<br>​    [root@localhost ~]# ll<br>​    -rw-r–r–. 1 root root 1162 8月  22 11:09 eagle<br>​    属主的权限是：rw-，拥有可读可写不可执行的权限<br>​    属组的权限是：r–，拥有可读不可写不可执行的权限<br>​    其他的权限是：r–，拥有可读不可写不可执行的权限<br>​    权限值644<br>相关管理命令<br>chmod命令<br>​    -R：递归修改<br>​    修改方式<br>​        u=<br>​        g=<br>​        o=<br>​        421<br>chown命令<br>​    -R：递归修改<br>chgrp命令<br>umask命令<br>​    在当前文件夹下创建文件时的默认权限遮掩码</p>
-<h1 id="特殊权限"><a href="#特殊权限" class="headerlink" title="特殊权限"></a>特殊权限</h1><p>​    SUID：4<br>​    SGID：2<br>​    SBIT：1<br>SUID：4<br>​    SUID权限仅仅对二进制程序是有效<br>​    执行者必须有x权限<br>​    仅在本程序拥有权限<br>​    借出属主的权限<br>​    当属主有x权限时，suid设置为s<br>​    当属主没有x权限时，suid设置为S<br>​    典型例子passwd工具<br>SGID：2<br>​    二进制程序有效<br>​    执行者需要拥有x权限<br>​    当属组有x权限时，sgid设置为s<br>​    当属组没有x权限时，sgid设置为S<br>SBIT：1<br>​    共享目录<br>​    针对目录<br>​    只有属主和root用户可以修改删除该文件<br>​    其他用户不可以删除别人的文件<br>​    典型例子/tmp</p>
-<h1 id="ACL权限"><a href="#ACL权限" class="headerlink" title="ACL权限"></a>ACL权限</h1><pre><code>主要目的是针对传统的属主属组其他权限控制不够的地方，进行细节权限补充
-ACL可以针对单一使用者，单一文件或目录来进行rwx的权限规范，对于需要特殊权限的使用有帮助
-</code></pre>
-<p>setfacl命令<br>    -m：添加acl参数<br>    -x：删除acl参数<br>    -b：移除所有acl的相关的参数<br>    -R：递归添加acl设定参数<br>    -d：添加默认的acl参数<br>    删除用户权限<br>        setfacl -x u:username filename<br>    删除组权限<br>        setfacl -x g:groupname filename<br>    删除整个acl权限<br>        setfacl -b filename<br>    添加参数<br>getfacl<br>    [root@localhost ~]# getfacl test1</p>
-<p>#file: test1</p>
-<p>#owner: root</p>
-<p>#group: root</p>
-<p>​    user::rw-<br>​    group::r–<br>​    mask::r–<br>​    other::r–</p>
-
-        <p class="suffix-end">__END__</p>
-        <div class="suffix-box">
-            <div class="suffix-box-left">
-                <img src="https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/image/sidebar/avatar.jpg" alt="Live For Code">
-            </div>
-            <div class="suffix-box-right">
-                <span class="suffix-box-title">文章作者</span>：Live For Code
-                <br>
-                <span class="suffix-box-title">文章出处</span>：<a href="/2021/06/30/%E7%94%A8%E6%88%B7%E5%92%8C%E7%A7%9F%E7%AE%A1%E7%90%86/" target="_blank">用户和租管理</a>
-                <br>
-                <span class="suffix-box-title">作者签名</span>：简单地活着, 肆意又精彩.
-                <br>
-                <span class="suffix-box-title">关于主题</span>：<a href="https://github.com/first19326/Hexo-LiveForCode" target="_blank">Hexo - Live For Code</a>
-                <br>
-                <span class="suffix-box-title">版权声明</span>：文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" title="BY-NC-SA" target="_blank">BY-NC-SA</a> 许可协议，转载请注明出处
-                <br>
-            </div>
-            <div style="clear: both;"></div>
-        </div>
-    </div>
-    <div class="article-footer">
-        
-        
-            <div class="tag">
-                标签：
-                
-                    <a href="/tags/%E9%83%AD%E6%81%92%E7%9A%84%E7%AC%94%E8%AE%B0/">郭恒的笔记</a>
+        <div class="article">
+            <div class="article-title">
+                <a href="/2021/06/30/%E7%A7%91%E6%AF%94/">科比</a>
                 
             </div>
-        
-        <div class="article-prev-next">
-            
-                <a href="/2021/06/30/%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80%E9%83%A8%E5%88%86/" class="prev-prefix">« </a> 上一篇：    <a href="/2021/06/30/%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80%E9%83%A8%E5%88%86/" title="发布于 2021-06-30 06:16">网络基础部分</a>
-                <br>
-            
-            
-                <a href="/2021/06/30/%E8%99%9A%E6%8B%9F%E5%8C%96%E6%8A%80%E6%9C%AF-1/" class="next-prefix">» </a> 下一篇：    <a href="/2021/06/30/%E8%99%9A%E6%8B%9F%E5%8C%96%E6%8A%80%E6%9C%AF-1/" title="发布于 2021-06-30 05:42">虚拟化技术</a>
-            
+            <div class="article-abstract">
+                
+            </div>
+            <div class="clear"></div>
+            <div class="article-info">
+                <span>
+                    <i class="iconfont icon-time"></i> 发表时间：2021-06-30
+                </span>
+                
+                    <span id="/2021/06/30/科比/" class="leancloud_visitors" data-flag-title="科比">
+                        <i class="iconfont icon-browse"></i> 阅读：<sapn class="leancloud-visitors-count"></span>
+                    </span>
+                
+                <span>
+                    <i class="iconfont icon-interactive"></i> 评论：<span class="valine-comment-count" data-xid="/2021/06/30/科比/"></span>
+                </span>
+            </div>
+            <div class="clear"></div>     
         </div>
-    </div>
     
-    <div class="article-comments">
-        <div class="comments-title">
-            评论列表
-        </div>
-        <div class="comments-content">
-        </div>
-    </div>
-
+    
 </div>
 
     </div>
