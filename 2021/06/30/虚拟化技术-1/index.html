@@ -6,7 +6,7 @@
     <meta name="referrer" content="origin">
     <meta http-equiv="Cache-Control" content="no-transform">
     <meta http-equiv="Cache-Control" content="no-siteapp">
-    <title>Hello World</title>
+    <title>虚拟化技术</title>
 
     <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/font/LongCang.css">
     <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/font/Monda.css">
@@ -31,19 +31,19 @@
     <div class="header">
         <div class="vertical">
             <div class="inner">
-                <h1 class="header-subtitle">Hello World</h1>
+                <h1 class="header-subtitle">虚拟化技术</h1>
                 <div class="header-subinfo">
                     <p class="article-info-text">
                         <span>
                             <i class="iconfont icon-time"></i> 发表时间：2021-06-30
                         </span>
                         
-                            <span id="/2021/06/30/hello-world/" class="leancloud_visitors" data-flag-title="Hello World">
+                            <span id="/2021/06/30/虚拟化技术-1/" class="leancloud_visitors" data-flag-title="虚拟化技术">
                                 <i class="iconfont icon-browse"></i> 阅读：<sapn class="leancloud-visitors-count"></span>
                             </span>
                         
                         <span>
-                            <i class="iconfont icon-interactive"></i> 评论：<span class="valine-comment-count" data-xid="/2021/06/30/hello-world/"></span>
+                            <i class="iconfont icon-interactive"></i> 评论：<span class="valine-comment-count" data-xid="/2021/06/30/虚拟化技术-1/"></span>
                         </span>  
                     </p>                 
                 </div>
@@ -57,19 +57,62 @@
         <div id="article">
     <div class="toc"></div>
     <div class="article-body">
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+        <p>虚拟化技术</p>
+<h2 id="kvm："><a href="#kvm：" class="headerlink" title="kvm："></a>kvm：</h2><h2 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h2><p>开启硬件辅助虚拟化:</p>
+<p><img src="C:\Users\xiaoheng\AppData\Roaming\Typora\typora-user-images\image-20210510162505648.png" alt="image-20210510162505648"></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# yum groupinstall  -y &quot;GNOME 桌面&quot;</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<ul>
+<li>如果出现报错尝试更新一下软件包</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# yum upgrade -y</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+<ul>
+<li>查看CPU支持的功能中是否存在<ul>
+<li>vmx:INTEL的虚拟化功能</li>
+<li>svm:AMD的虚拟化功</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# cat /proc/cpuinfo |grep -E &#x27;vmx|svm&#x27;</span><br></pre></td></tr></table></figure>
+
+<h2 id="卸载KVM"><a href="#卸载KVM" class="headerlink" title="卸载KVM"></a>卸载KVM</h2><ul>
+<li>清理干净KVM相关的预装环境</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# yum remove `rpm -qa |egrep &#x27;qemu|virt|kvm&#x27;` -y</span><br><span class="line">[root@localhost ~]# rm -rf /var/lib/libvirt /etc/libvirt/</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="进入图形化"><a href="#进入图形化" class="headerlink" title="进入图形化"></a>进入图形化</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# systemctl set-default graphical.target   #开机自动进入</span><br><span class="line">[root@localhost ~]# startx</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li> 重启</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# reboot</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="安装kvm"><a href="#安装kvm" class="headerlink" title="安装kvm"></a>安装kvm</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">virt-install --connect qemu:///system -n vm2 -r 2050 --disk path=/var/lib/libvirt/images/vm2.img,size=7 --os-type=linux --os-variant=centos7.0 --vcpus=1 --location=/root/桌面/CentOS-7.iso -x console=ttyS0 --nographics</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<p>参数说明：</p>
+<p>-n name</p>
+<p>-r  以M为单位指定分配给虚拟机的内存大小</p>
+<p>–disk 指定作为客户机存储的媒介 size以G为单位的存储</p>
+<p>–os-type   针对一类操作系统优化虚拟机配置</p>
+<p>–os-variant 针对特定操作系统变体进一步优化虚拟机配置</p>
+<p>–vcpus</p>
+<p>–location  客户虚拟机kernel+initrd 安装源，必须为镜像挂载在ftp目录下</p>
+<p>-x 当执行从”–location”选项指定位置的客户机安装时，附加内核命令行参数到安装程序</p>
+<p>–nographics 指定没有控制台被分配给客户机。</p>
+<p>缺点：纯文本安装的输入时大小写莫名的变换，远程ssh没问题内存必须大于2048（-r后面）</p>
+<p>易错:</p>
+<p>安装过程中：</p>
+<p>手动配置IP地址</p>
+<p>到url位置找不到路径，要返回去手动选择url，重新配置url为<a href="ftp://192.168.100.230/rhel6u4,%E8%BF%99%E9%87%8C%E7%9A%84ip%E4%B8%8D%E8%A6%81%E5%86%99127.0.0.1%E8%80%8C%E6%98%AFbr0%E7%9A%84ip">ftp://192.168.100.230/rhel6u4,这里的ip不要写127.0.0.1而是br0的ip</a></p>
+<p><img src="C:\Users\xiaoheng\AppData\Roaming\Typora\typora-user-images\image-20210511110004243.png" alt="image-20210511110004243"></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"> cat /etc/centos-release</span><br><span class="line">CentOS Linux release 7.9.2009 (Core)</span><br></pre></td></tr></table></figure>
 
         <p class="suffix-end">__END__</p>
         <div class="suffix-box">
@@ -79,7 +122,7 @@
             <div class="suffix-box-right">
                 <span class="suffix-box-title">文章作者</span>：Live For Code
                 <br>
-                <span class="suffix-box-title">文章出处</span>：<a href="/2021/06/30/hello-world/" target="_blank">Hello World</a>
+                <span class="suffix-box-title">文章出处</span>：<a href="/2021/06/30/%E8%99%9A%E6%8B%9F%E5%8C%96%E6%8A%80%E6%9C%AF-1/" target="_blank">虚拟化技术</a>
                 <br>
                 <span class="suffix-box-title">作者签名</span>：简单地活着, 肆意又精彩.
                 <br>
@@ -96,11 +139,8 @@
         
         <div class="article-prev-next">
             
-                <a href="/2021/06/30/%E8%99%9A%E6%8B%9F%E5%8C%96%E6%8A%80%E6%9C%AF-1/" class="prev-prefix">« </a> 上一篇：    <a href="/2021/06/30/%E8%99%9A%E6%8B%9F%E5%8C%96%E6%8A%80%E6%9C%AF-1/" title="发布于 2021-06-30 05:42">虚拟化技术</a>
-                <br>
             
-            
-                <a href="/2021/05/18/%E7%94%A8%E6%88%B7%E5%92%8C%E7%A7%9F%E7%AE%A1%E7%90%86/" class="next-prefix">» </a> 下一篇：    <a href="/2021/05/18/%E7%94%A8%E6%88%B7%E5%92%8C%E7%A7%9F%E7%AE%A1%E7%90%86/" title="发布于 2021-05-18 10:27"></a>
+                <a href="/2021/06/30/hello-world/" class="next-prefix">» </a> 下一篇：    <a href="/2021/06/30/hello-world/" title="发布于 2021-06-30 11:21">Hello World</a>
             
         </div>
     </div>
