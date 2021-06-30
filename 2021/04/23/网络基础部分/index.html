@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, shrink-to-fit=no">
+    <meta name="referrer" content="origin">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <title></title>
+
+    <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/font/LongCang.css">
+    <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/font/Monda.css">
+    <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/font/NotoSansSC.css">
+    <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/font/Playball.css">
+    <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/font/PTMono.css">
+    <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/font/RobotoSlab.css">
+    <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/font/Rosario.css">
+    <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/font/UbuntuMono.css">
+
+    <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/css/post.css">
+    
+        <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/css/normal.css">
+    
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/js/jquery-3.4.1.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+<body>
+    <a id="cover"></a>
+    <div id="header">
+    <div class="header">
+        <div class="vertical">
+            <div class="inner">
+                <h1 class="header-subtitle"></h1>
+                <div class="header-subinfo">
+                    <p class="article-info-text">
+                        <span>
+                            <i class="iconfont icon-time"></i> 发表时间：2021-04-23
+                        </span>
+                        
+                            <span id="/2021/04/23/网络基础部分/" class="leancloud_visitors" data-flag-title="">
+                                <i class="iconfont icon-browse"></i> 阅读：<sapn class="leancloud-visitors-count"></span>
+                            </span>
+                        
+                        <span>
+                            <i class="iconfont icon-interactive"></i> 评论：<span class="valine-comment-count" data-xid="/2021/04/23/网络基础部分/"></span>
+                        </span>  
+                    </p>                 
+                </div>
+            </div>
+        </div>
+        <canvas id="articleHeaderCanvas"></canvas>
+    </div>
+</div>
+    <div id="container">
+    <div id="content">
+        <div id="article">
+    <div class="toc"></div>
+    <div class="article-body">
+        <h1 id="我整理的笔记"><a href="#我整理的笔记" class="headerlink" title="我整理的笔记"></a>我整理的笔记</h1><h1 id="网络基础部分："><a href="#网络基础部分：" class="headerlink" title="网络基础部分："></a>网络基础部分：</h1><p>初始化命令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">no</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">en</span><br><span class="line">conf t</span><br><span class="line">no cdp run</span><br><span class="line">interface range e0/0 -3</span><br><span class="line">duplex full</span><br><span class="line">no ip do lo</span><br><span class="line">line co 0</span><br><span class="line">exec-t 0</span><br><span class="line">logg sy</span><br><span class="line">ho R</span><br></pre></td></tr></table></figure>
+
+<h1 id="动态路由"><a href="#动态路由" class="headerlink" title="动态路由"></a>动态路由</h1><ul>
+<li>通过在路由器上运行动态路由协议，使得路由器之间能够交互“用于路由计算的信息”，从而路由器动态的“学习”到网络中的路由</li>
+</ul>
+<h1 id="距离管理"><a href="#距离管理" class="headerlink" title="距离管理"></a>距离管理</h1><ul>
+<li><p>不同的路由协议会有不同的管理距离</p>
+</li>
+<li><p>值越小的管理距离优先级越高</p>
+</li>
+<li><p>当路由器从不同的协议里学习到相同的路由的时候，优先选择优先级高的路由</p>
+</li>
+<li><p>常见的管理距离</p>
+<p><img src="C:\Users\xiaoheng\AppData\Roaming\Typora\typora-user-images\image-20210422221049645.png" alt="image-20210422221049645"></p>
+</li>
+</ul>
+<h1 id="静态路由"><a href="#静态路由" class="headerlink" title="静态路由"></a>静态路由</h1><p>特点：</p>
+<p>需要通过手工的方式进行添加及维护；</p>
+<p>适用于组网规模较小的场景，如果网络规模较大，则配置及维护</p>
+<p>的成本就会很高；</p>
+<p>无法根据拓扑的变化进行动态的响应（各厂商开发了扩展特性，以便弥补静态路由在这点上的不<br>足）；<br>在大型的网络中，往往采用动、静态路由结合的方式进行部署。<br>配置方式</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">R1(config)#</span><span class="bash"> ip route network-address subnet-mask &#123;ip-add 1 | exit-interface&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="环回接口"><a href="#环回接口" class="headerlink" title="环回接口"></a>环回接口</h1><p>Loop_back接口，也叫环回口，是一个逻辑的、虚拟的接口；<br>使用全局配置命令interface loop_back 加上接口编号可创建一个Loop_back接口，创建完成后即可<br>为接口配置IP地址；<br>Loop_back接口在手工创建后，除非人为shutdown，否则不会DOWN掉；<br>Loop_back接口常用于：<br>模拟路由器的直连网段，可用于测试；<br>可用于设备管理（Loop_back接口比较稳定）；<br>供其他协议使用，例如OSPF、BGP、MPLS等；<br>SNMPTraps消息的源地址；<br>其他用途（Loopback接口的用途十分广泛）</p>
+<h1 id="基础配置命令："><a href="#基础配置命令：" class="headerlink" title="基础配置命令："></a>基础配置命令：</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">R1(config)#</span><span class="bash">int lo0</span></span><br><span class="line"><span class="meta">R1(config-if)#</span><span class="bash">ip add 1.1.1.1 255.255.255.0</span></span><br><span class="line">R1(config-if)no sh</span><br><span class="line"><span class="meta">R1(config-if)#</span><span class="bash">int e0/0</span></span><br><span class="line"><span class="meta">R1(config-if)#</span><span class="bash">ip add 192.168.12.1 255.255.255.0</span></span><br><span class="line"><span class="meta">R1(config-if)#</span><span class="bash">no sh</span></span><br><span class="line"><span class="meta">R1(config)#</span><span class="bash">router rip</span></span><br><span class="line"><span class="meta">R1(config-router)#</span><span class="bash">version 2</span></span><br><span class="line"><span class="meta">R1(config-router)#</span><span class="bash">network 1.0.0.0</span> </span><br><span class="line"><span class="meta">R1(config-router)#</span><span class="bash">network 192.168.12.0</span></span><br><span class="line"><span class="meta">R1#</span><span class="bash"> run | sec rip</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">R2(config)#</span><span class="bash">int lo0</span></span><br><span class="line"><span class="meta">R2(config-if)#</span><span class="bash">ip add 2.2.2.2 255.255.255.0</span></span><br><span class="line">R2(config-if)no sh</span><br><span class="line"><span class="meta">R2(config-if)#</span><span class="bash">int e0/0</span></span><br><span class="line"><span class="meta">R2(config-if)#</span><span class="bash">ip add 192.168.12.2 255.255.255.0</span></span><br><span class="line">R2(config-if)no sh</span><br><span class="line"><span class="meta">R2(config-if)#</span><span class="bash">int e0/1</span></span><br><span class="line"><span class="meta">R2(config-if)#</span><span class="bash">ip add 192.168.23.2 255.255.255.0</span></span><br><span class="line"><span class="meta">R2(config-if)#</span><span class="bash">no sh</span></span><br><span class="line"><span class="meta">R2(config)#</span><span class="bash">router rip</span></span><br><span class="line"><span class="meta">R2(config-router)#</span><span class="bash">version 2</span></span><br><span class="line"><span class="meta">R2(config-router)#</span><span class="bash">network 2.0.0.0</span></span><br><span class="line"><span class="meta">R2(config-router)#</span><span class="bash">network 192.168.12.0</span></span><br><span class="line"><span class="meta">R2(config-router)#</span><span class="bash">network 192.168.23.0</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">R3(config)#</span><span class="bash">int lo0</span></span><br><span class="line"><span class="meta">R3(config-if)#</span><span class="bash">ip add 3.3.3.3 255.255.255.0</span></span><br><span class="line">R3(config-if)no sh</span><br><span class="line"><span class="meta">R3(config-if)#</span><span class="bash">int e0/0</span></span><br><span class="line"><span class="meta">R3(config-if)#</span><span class="bash">ip add 192.168.23.3 255.255.255.0</span></span><br><span class="line">R3(config-if)no sh</span><br><span class="line"><span class="meta">R3(config)#</span><span class="bash">router rip</span></span><br><span class="line"><span class="meta">R3(config-router)#</span><span class="bash">version 2</span></span><br><span class="line"><span class="meta">R3(config-router)#</span><span class="bash">network 192.168.23.0</span></span><br><span class="line"><span class="meta">R3(config-router)#</span><span class="bash">network 3.0.0.0</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>实验结果：</p>
+<p><img src="C:\Users\xiaoheng\AppData\Roaming\Typora\typora-user-images\image-20210423011503364.png" alt="image-20210423011503364"></p>
+<p>实验过程：</p>
+<p><img src="C:\Users\xiaoheng\AppData\Roaming\Typora\typora-user-images\image-20210423001930946.png" alt="image-20210423001930946"></p>
+<h1 id="RIPV2的路由汇总"><a href="#RIPV2的路由汇总" class="headerlink" title="RIPV2的路由汇总"></a>RIPV2的路由汇总</h1><p>默认情况，rip version2 会将自己的路由条目进行汇总然后更新给其他路由器<br>当路由汇总后出现同样的条目时，会进行等价的负载均衡<br>如果想要进行人工汇总，建议首先关闭自动汇总，然后再进行手动汇总</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">R1(config)#</span><span class="bash">router rip</span></span><br><span class="line"><span class="meta">R1(config-router)#</span><span class="bash">version 2</span></span><br><span class="line"><span class="meta">R1(config-router)#</span><span class="bash">no auto-summary <span class="comment"># 关闭rip的自动路由汇总</span></span></span><br><span class="line"><span class="meta">R1(config-router)#</span><span class="bash">int e0/0</span></span><br><span class="line"><span class="meta">R1(config-if)#</span><span class="bash">ip summary-address rip 172.16.0.0 255.255.252.0 <span class="comment"># 手动</span></span></span><br><span class="line">添加路由汇总</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">R1(config)#</span><span class="bash">int lo10</span></span><br><span class="line"><span class="meta">R1(config-if)#</span><span class="bash"> add 10.10.10.10 255.255.255.0</span></span><br><span class="line"><span class="meta">R1(config-if)#</span><span class="bash">int lo20</span></span><br><span class="line"><span class="meta">R1(config-if)#</span><span class="bash"> add 10.10.10.20 255.255.255.0</span></span><br><span class="line"><span class="meta">R1(config-if)#</span><span class="bash">int lo30</span></span><br><span class="line"><span class="meta">R1(config-if)#</span><span class="bash"> add 10.10.10.30 255.255.255.0</span></span><br><span class="line"><span class="meta">R1(config)#</span><span class="bash">router rip</span></span><br><span class="line"><span class="meta">R1(config-router)#</span><span class="bash">no auto-summary</span></span><br><span class="line"><span class="meta">R1(config-router)#</span><span class="bash"> network 10.0.10.0</span>  </span><br><span class="line"><span class="meta">R1(config-router)#</span><span class="bash"> network 10.0.20.0</span></span><br><span class="line"><span class="meta">R1(config-router)#</span><span class="bash"> network 10.0.30.0</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">R2(config)#</span><span class="bash">router rip</span> </span><br><span class="line"><span class="meta">R2(config-router)#</span><span class="bash">no auto-summary</span></span><br><span class="line">R2(config)int e0/1</span><br><span class="line">R2(config-if)ip summary-address rip 10.10.0.0 255.255.0.0</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">R3(config)#</span><span class="bash">router rip</span> </span><br><span class="line"><span class="meta">R3(config-router)#</span><span class="bash">no auto-summary</span></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="OSPF实验拓扑"><a href="#OSPF实验拓扑" class="headerlink" title="OSPF实验拓扑"></a>OSPF实验拓扑</h1><p>OSPF简介<br>OSPF（Open Shortest Path First，开放最短路径优先）是一种链路状态路由协议，无路由循环<br>（全局拓扑），属于IGP。RFC 2328，“开放”意味着非私有的，对公众开放的。<br>OSPF的报文封装<br>OSPF协议包直接封装于IP，协议号89。<br>OSPF协议使用的组播地址<br>所有OSPF路由器——224.0.0.5；DR BDR——224.0.0.6<br>OSPF路由协议的管理距离：110</p>
+<h2 id="OSPF实验拓扑-1"><a href="#OSPF实验拓扑-1" class="headerlink" title="OSPF实验拓扑"></a>OSPF实验拓扑</h2><p><img src="C:\Users\xiaoheng\AppData\Roaming\Typora\typora-user-images\image-20210423021023978.png" alt="image-20210423021023978"></p>
+<ul>
+<li>配IP地址</li>
+<li>R2(config)#int range e0/0-1,lo0<br>R2(config-if-range)#ip ospf 1 area 0</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 配置ip地址，必须配环回接口</span></span><br><span class="line">略</span><br><span class="line"><span class="meta">#</span><span class="bash">配置ospf</span></span><br><span class="line">方式一</span><br><span class="line"><span class="meta">R1(config)#</span><span class="bash">router ospf 1</span></span><br><span class="line"><span class="meta">R1(config-router)#</span><span class="bash">network 1.0.0.0 0.0.0.255 area 0</span></span><br><span class="line"></span><br><span class="line">方式二</span><br><span class="line"><span class="meta">R2(config)#</span><span class="bash">int range e0/0-1,lo0</span></span><br><span class="line"><span class="meta">R2(config-if-range)#</span><span class="bash">ip ospf 1 area 0</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="双向重发步："><a href="#双向重发步：" class="headerlink" title="双向重发步："></a>双向重发步：</h2><p><img src="C:\Users\xiaoheng\AppData\Roaming\Typora\typora-user-images\image-20210424153514343.png" alt="image-20210424153514343"></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">R2(config)#</span><span class="bash">router rip</span></span><br><span class="line"><span class="meta">R2(config-router)#</span><span class="bash">ver</span></span><br><span class="line"><span class="meta">R2(config-router)#</span><span class="bash">version 2</span></span><br><span class="line"><span class="meta">R2(config-router)#</span><span class="bash">redistribute ospf 1 metric 5</span></span><br><span class="line"><span class="meta">R2(config-router)#</span><span class="bash">router ospf 1</span></span><br><span class="line"><span class="meta">R2(config-router)#</span><span class="bash">redistribute rip subnets</span> </span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">R1#</span><span class="bash">sh run  //可以查看到历史操作</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="ospf多区域拓扑"><a href="#ospf多区域拓扑" class="headerlink" title="ospf多区域拓扑:"></a>ospf多区域拓扑:</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">R1(config)#</span><span class="bash">int lo0</span></span><br><span class="line"><span class="meta">R1(config-if)#</span><span class="bash">ip add 1.1.1.1 255.255.255.0</span></span><br><span class="line"><span class="meta">R1(config-if)#</span><span class="bash">int e0/0</span></span><br><span class="line"><span class="meta">R1(config-if)#</span><span class="bash">ip add 192.168.12.1 255.255.255.0</span></span><br><span class="line"><span class="meta">R1(config-if)#</span><span class="bash">no sh</span></span><br><span class="line"><span class="meta">R1(config)#</span><span class="bash">int lo0</span></span><br><span class="line"><span class="meta">R1(config-if)#</span><span class="bash">ip ospf 1 area 1</span></span><br><span class="line"><span class="meta">R1(config-if)#</span><span class="bash">int e0/0</span></span><br><span class="line"><span class="meta">R1(config-if)#</span><span class="bash">ip ospf 1 area 1</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">R2(config)#</span><span class="bash">int lo0</span></span><br><span class="line"><span class="meta">R2(config-if)#</span><span class="bash">ip add 2.2.2.2 255.255.255.0</span></span><br><span class="line"><span class="meta">R2(config-if)#</span><span class="bash">int e0/0</span></span><br><span class="line"><span class="meta">R2(config-if)#</span><span class="bash">ip add 192.168.12.2 255.255.255.0</span></span><br><span class="line"><span class="meta">R2(config-if)#</span><span class="bash">no sh</span></span><br><span class="line"><span class="meta">R2(config-if)#</span><span class="bash">int e0/1</span></span><br><span class="line"><span class="meta">R2(config-if)#</span><span class="bash">ip add 192.168.23.2 255.255.255.0</span></span><br><span class="line"><span class="meta">R2(config-if)#</span><span class="bash">no sh</span></span><br><span class="line"><span class="meta">R2(config)#</span><span class="bash">int lo0</span></span><br><span class="line"><span class="meta">R2(config-if)#</span><span class="bash">ip ospf 1 area 0</span></span><br><span class="line"><span class="meta">R2(config-if)#</span><span class="bash">int e0/0</span></span><br><span class="line"><span class="meta">R2(config-if)#</span><span class="bash">ip ospf 1 area 1</span></span><br><span class="line"><span class="meta">R2(config-if)#</span><span class="bash">int e0/1</span></span><br><span class="line"><span class="meta">R2(config-if)#</span><span class="bash">ip ospf 1 area 0</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">R3(config)#</span><span class="bash">int lo0</span></span><br><span class="line"><span class="meta">R3(config-if)#</span><span class="bash">ip add 3.3.3.3 255.255.255.0</span></span><br><span class="line"><span class="meta">R3(config-if)#</span><span class="bash">no sh</span></span><br><span class="line"><span class="meta">R3(config-if)#</span><span class="bash">int e0/0</span></span><br><span class="line"><span class="meta">R3(config-if)#</span><span class="bash">ip add 192.168.23.3 255.255.255.0</span></span><br><span class="line"><span class="meta">R3(config-if)#</span><span class="bash">int e0/1</span></span><br><span class="line"><span class="meta">R3(config-if)#</span><span class="bash">ip add 192.168.34.3 255.255.255.0</span></span><br><span class="line"><span class="meta">R3(config-if)#</span><span class="bash">no sh</span></span><br><span class="line"><span class="meta">R3(config)#</span><span class="bash">int lo0</span></span><br><span class="line"><span class="meta">R3(config-if)#</span><span class="bash">ip ospf 1 area 0</span></span><br><span class="line"><span class="meta">R3(config-if)#</span><span class="bash">int e0/0</span></span><br><span class="line"><span class="meta">R3(config-if)#</span><span class="bash">ip ospf 1 area 0</span></span><br><span class="line"><span class="meta">R3(config-if)#</span><span class="bash">int e0/1</span></span><br><span class="line"><span class="meta">R3(config-if)#</span><span class="bash">ip ospf 1 area 2</span></span><br><span class="line"><span class="meta">R3#</span><span class="bash">sh run</span></span><br><span class="line">interface Tunnel0</span><br><span class="line">ip address 192.168.100.3 255.255.255.0</span><br><span class="line">ip ospf 1 area 0</span><br><span class="line">tunnel source Ethernet0/1</span><br><span class="line">tunnel mode ipip</span><br><span class="line">tunnel destination 192.168.34.4</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">R4(config)#</span><span class="bash">int lo0</span></span><br><span class="line"><span class="meta">R4(config-if)#</span><span class="bash">ip add 4.4.4.4 255.255.255.0</span></span><br><span class="line"><span class="meta">R4(config-if)#</span><span class="bash">int e0/0</span>                    </span><br><span class="line"><span class="meta">R4(config-if)#</span><span class="bash">ip add 192.168.34.4 255.255.255.0</span></span><br><span class="line"><span class="meta">R4(config-if)#</span><span class="bash">no sh</span></span><br><span class="line"><span class="meta">R4(config-if)#</span><span class="bash">int e0/1</span></span><br><span class="line"><span class="meta">R4(config-if)#</span><span class="bash">ip add 192.168.45.4 255.255.255.0</span></span><br><span class="line"><span class="meta">R4(config-if)#</span><span class="bash">no sh</span></span><br><span class="line"><span class="meta">R4(config)#</span><span class="bash">int lo0</span></span><br><span class="line"><span class="meta">R4(config-if)#</span><span class="bash">ip ospf 1 area 2</span></span><br><span class="line"><span class="meta">R4(config-if)#</span><span class="bash">int e0/0</span></span><br><span class="line"><span class="meta">R4(config-if)#</span><span class="bash">ip ospf 1 area 2</span></span><br><span class="line"><span class="meta">R4(config-if)#</span><span class="bash">int e0/1</span></span><br><span class="line"><span class="meta">R4(config-if)#</span><span class="bash">ip ospf 1 area 4</span></span><br><span class="line"><span class="meta">R4#</span><span class="bash">sh run</span></span><br><span class="line">interface Tunnel0</span><br><span class="line">ip address 192.168.100.4 255.255.255.0</span><br><span class="line">ip ospf 1 area 0</span><br><span class="line">tunnel source Ethernet0/0</span><br><span class="line">tunnel mode ipip</span><br><span class="line">tunnel destination 192.168.34.3</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">R5(config)#</span><span class="bash">int lo0</span></span><br><span class="line"><span class="meta">R5(config-if)#</span><span class="bash">ip add 5.5.5.5 255.255.255.0</span></span><br><span class="line"><span class="meta">R5(config-if)#</span><span class="bash">no sh</span></span><br><span class="line"><span class="meta">R5(config-if)#</span><span class="bash">int e0/0</span></span><br><span class="line"><span class="meta">R5(config-if)#</span><span class="bash">ip add 192.168.45.5 255.255.255.0</span></span><br><span class="line"><span class="meta">R5(config-if)#</span><span class="bash">no sh</span></span><br><span class="line"><span class="meta">R5(config)#</span><span class="bash">int lo0</span></span><br><span class="line"><span class="meta">R5(config-if)#</span><span class="bash">ip ospf 1 area 4</span></span><br><span class="line"><span class="meta">R5(config-if)#</span><span class="bash">int e0/0</span>        </span><br><span class="line"><span class="meta">R5(config-if)#</span><span class="bash">ip ospf 1 area 4</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 第一种方式，R3和R4上同时都需要配置以下相同的配置，以完成虚链路</span></span><br><span class="line"><span class="meta">R3(config)#</span><span class="bash">router ospf 1</span></span><br><span class="line"><span class="meta">R3(config-router)#</span><span class="bash">area 2 virtual-link 4.4.4.4</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 第二种方式</span></span><br><span class="line"><span class="meta">R3#</span><span class="bash">sh run</span></span><br><span class="line">interface Tunnel0</span><br><span class="line">ip address 192.168.100.3 255.255.255.0</span><br><span class="line">ip ospf 1 area 0</span><br><span class="line">tunnel source Ethernet0/1</span><br><span class="line">tunnel mode ipip</span><br><span class="line">tunnel destination 192.168.34.4</span><br></pre></td></tr></table></figure>
+
+
+
+<p><img src="C:\Users\xiaoheng\AppData\Roaming\Typora\typora-user-images\image-20210424151929544.png" alt="image-20210424151929544"></p>
+<h1 id="LAS"><a href="#LAS" class="headerlink" title="LAS:"></a>LAS:</h1><h2 id="三张表"><a href="#三张表" class="headerlink" title="三张表:"></a>三张表:</h2><p><img src="C:\Users\xiaoheng\AppData\Roaming\Typora\typora-user-images\image-20210426225616250.png" alt="image-20210426225616250"></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">R2#</span><span class="bash">show ip ospf nei</span></span><br><span class="line">Neighbor ID Pri State Dead Time Address Interface</span><br><span class="line">3.3.3.3 1 FULL/DR 00:00:31 192.168.23.3 Ethernet0/1</span><br><span class="line">1.1.1.1 1 FULL/BDR 00:00:39 192.168.12.1 Ethernet0/0</span><br></pre></td></tr></table></figure>
+
+<h1 id="OSPF名词"><a href="#OSPF名词" class="headerlink" title="OSPF名词"></a>OSPF名词</h1><p>Neighbor ID：邻居的id，这个id通常是由环回接口选的，并且是优先选取地址大的作为id</p>
+<p>在一个OSPF域中，唯一地标识一台OSPF路由器</p>
+<p>32bits，表现为IPv4地址形式。在未有手工指定的情况下，如果本地有激活的Loopback接口，则取Loopback接口IP最大值；如果没有LP接口，则取激活的物理接口IP中的最大值</p>
+<p>为了提高路由器的RID的稳定性和网络的稳定性建议手动的设置路由器的Router-ID：在OSPF<br>的进程下修改:router-id &lt;x.x.x.x&gt;（建议id值以编号为准）<br>项目实施中，一般是建立loopback口，并且手工指定loopback口地址为router-id</p>
+<p>Pri：优先级<br>Dead Time：死亡时间，每十秒钟会更新一次，如果40秒倒计时结束还没有收到邻居的hello包，<br>认为邻居死亡<br>State：邻居的状态<br>DR<br>DR的作用：多路访问中为了减少邻接关系（N平方的问题）和LSA的洪泛，采用DR机<br>制,BDR提供了备份<br>MA网络上的所有路由器均与DR、BDR建立邻居关系<br>BDR<br>选举规则<br>接口优先级数字越大越优先（优先级为0不能参与DR的选举）<br>Router ID越大越好<br>稳定压倒一切（非抢占）<br>通过控制接口优先级是控制DR选举的好办法<br>DR的选举是基于接口的，如果说某个路由器是DR，这种说法是错误的<br>在某些以太网中并不需要建立DR、BDR的过程，可以将模式修改为point-to-point来加速邻居<br>建立的过程</p>
+<h2 id="OSPF-COST"><a href="#OSPF-COST" class="headerlink" title="OSPF COST"></a>OSPF COST</h2><p>OSPF接口COST＝参考带宽（10的8次方）/ 接口带宽，单位/kb<br>接口带宽为接口逻辑带宽，可以使用bandwith命令调整，主要用于路由计算，而不是接口物<br>理带宽，但一般情况：接口逻辑带宽＝接口物理带宽。<br>手工修改接口Cost的方法<br>Router(config)# int e0/0<br>Router(config-if)# ip ospf cost 100 !! 该命令在接收路由的入口上配置，也就是数据流量的出<br>口<br>可修改“参考带宽”,来保障OSPF在现如今的网络中正常运转<br>建议将参考带宽设置为整个网络中的最大带宽<br>auto-cost reference-bandwidth &lt;参考带宽以Mbits为单位&gt;</p>
+<p>邻居建立过程<br>Down<br>路由器未开始运行OSPF<br>Init<br>路由器收到对方发过来的hello，但是却没有发现存在自己的Router-Id<br>Two-way<br>R2(config)#int e0/0<br>R2(config-if)#ip ospf network point-to-point<br>R1#sh ip ospf neighbor<br>Neighbor ID Pri State Dead Time Address Interface<br>2.2.2.2 0 FULL/ - 00:00:32 192.168.12.2 Ethernet0/0</p>
+<h1 id="状态中是没有DR或者BDR的"><a href="#状态中是没有DR或者BDR的" class="headerlink" title="状态中是没有DR或者BDR的"></a>状态中是没有DR或者BDR的</h1><p>Down</p>
+<p>路由器未开始运行OSPF</p>
+<p>Init</p>
+<p>路由器收到对方发过来的hello，但是却没有发现存在自己的Router-Id</p>
+<p>Two-way</p>
+<p>路由器收到对方发过来的hello中，是包含有自己的Router-ID<br>表示双方已经正常通信<br>如果是广播网络类型，在这个阶段会等待40s种，等所有路由器的Hello都充分交换，然后选<br>择Router-id最大的作为DR，过时不候。<br>Ex-Start<br>路由器发送空的DBD数据报文，用来选举由谁来主导整个过程，最终是选择Router-id较大的<br>L置位表示是否完成选举过程，M置位表示是否是最后一条消息，MS置位表示的是否是<br>MASTER<br>Exchange<br>路由器交换互相的DBD，可以理解为目录，从的节点率先发送给主节点<br>比对哪些LSA是自己没有的<br>Loading<br>向对方发送请求的LSA，接受对方的LSA，可以理解为书的内容<br>并且回复ACK<br>Full<br>完成j建立过程</p>
+<h2 id="OSPF消息类型"><a href="#OSPF消息类型" class="headerlink" title="OSPF消息类型"></a>OSPF消息类型</h2><p>hello包<br>用来建立以及维护邻居关系的数据包<br>DBD<br>链路状态数据库描述信息<br>LSR<br>链路状态请求，向邻居请求自己没有的信息<br>LSU<br>链路状态更新的信息，可以包含一条或者多条<br>ACK<br>确认消息，表示收到了</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">int lo10</span><br><span class="line">ip add 10.10.10.10 255.255.255.0</span><br><span class="line">ospf 1</span><br><span class="line">reddistribute connected subnet//重发步</span><br></pre></td></tr></table></figure>
+
+
+        <p class="suffix-end">__END__</p>
+        <div class="suffix-box">
+            <div class="suffix-box-left">
+                <img src="https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/image/sidebar/avatar.jpg" alt="Live For Code">
+            </div>
+            <div class="suffix-box-right">
+                <span class="suffix-box-title">文章作者</span>：Live For Code
+                <br>
+                <span class="suffix-box-title">文章出处</span>：<a href="/2021/04/23/%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80%E9%83%A8%E5%88%86/" target="_blank"></a>
+                <br>
+                <span class="suffix-box-title">作者签名</span>：简单地活着, 肆意又精彩.
+                <br>
+                <span class="suffix-box-title">关于主题</span>：<a href="https://github.com/first19326/Hexo-LiveForCode" target="_blank">Hexo - Live For Code</a>
+                <br>
+                <span class="suffix-box-title">版权声明</span>：文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" title="BY-NC-SA" target="_blank">BY-NC-SA</a> 许可协议，转载请注明出处
+                <br>
+            </div>
+            <div style="clear: both;"></div>
+        </div>
+    </div>
+    <div class="article-footer">
+        
+        
+        <div class="article-prev-next">
+            
+                <a href="/2021/04/28/%E5%88%9D%E8%AF%86shell/" class="prev-prefix">« </a> 上一篇：    <a href="/2021/04/28/%E5%88%9D%E8%AF%86shell/" title="发布于 2021-04-28 02:49"></a>
+                <br>
+            
+            
+                <a href="/2020/08/01/Hexo%E4%B8%BB%E9%A2%98LiveForCode%E4%BB%8B%E7%BB%8D/" class="next-prefix">» </a> 下一篇：    <a href="/2020/08/01/Hexo%E4%B8%BB%E9%A2%98LiveForCode%E4%BB%8B%E7%BB%8D/" title="发布于 2020-08-01 12:00">Hexo主题LiveForCode介绍</a>
+            
+        </div>
+    </div>
+    
+    <div class="article-comments">
+        <div class="comments-title">
+            评论列表
+        </div>
+        <div class="comments-content">
+        </div>
+    </div>
+
+</div>
+
+    </div>
+</div>
+    <div id="footer"></div>
+    <div id="sidebar">
+    <div class="menu-wrap" style="display:none;">
+        <nav class="menu">
+            <div class="menu-introduce"> 
+                <div class="introduce-avatar"></div> 
+                <div class="introduce-info"> 
+                    <div class="introduce-user"><span></span></div>        
+                </div> 
+            </div> 
+            <div class="menu-list">
+                <ul></ul> 
+            </div> 
+            <div class="menu-link"></div> 
+        </nav>
+        <button class="menu-button-close"></button>
+        <div class="morph-shape" id="morph-shape" data-morph-open="M-7.312,0H15c0,0,66,113.339,66,399.5C81,664.006,15,800,15,800H-7.312V0z;M-7.312,0H100c0,0,0,113.839,0,400c0,264.506,0,400,0,400H-7.312V0z">
+            <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 100 800" preserveAspectRatio="none">
+                <path d="M-7.312,0H0c0,0,0,113.839,0,400c0,264.506,0,400,0,400h-7.312V0z"/>
+            </svg>
+        </div>
+    </div>
+    <button class="menu-button-open">MENU</button>
+    <div class="menu-cover"></div>
+</div>
+    <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/css/search.css">
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/js/iscroll.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/js/instantsearch.min.js"></script>
+<div class="search-window">
+    <div class="search-content">
+        <div class="search-content-icon">
+            <i class="iconfont icon-search"></i>
+        </div>
+        <div id="search-input" class="search-input"></div>
+    </div>
+
+    <div class="search-scroll">
+        <div class="search-result">
+            <div id="search-stats" class="search-stats"></div>
+            <div id="search-hits"></div>
+            <div id="search-pagination" class="search-pagination"></div>
+        </div>
+    </div>
+
+    <span class="search-close-icon">
+        <i class="iconfont icon-close"></i>
+    </span>
+</div>
+    <div id="tools">
+    <div class="progressbar-top"></div>
+
+    
+        <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/css/APlayer.css">
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/js/APlayer.min.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/js/Meting.min.js"></script>
+        <meting-js id="3778678" lrcshow="false" server="netease" type="playlist" fixed="true" autoplay="false" loop="all" order="random" preload="auto" volume="0.67" mutex="true"></meting-js>
+    
+    
+    <div class="wrap-right"></div>
+    <div class="loading"></div>
+</div>
+    <script>
+    window.config = {
+        GitHubUserName     : 'first19326',
+        GitHubRepositories : 'Hexo-LiveForCode',
+
+        BlogUser      : 'Live For Code',
+        BlogAvatar    : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/image/sidebar/avatar.jpg',
+        BlogStartDate : '2020-01-01',
+
+        WebsiteTitleBlur         : '(◍´꒳`◍) Hi, Live For Code',
+        WebsiteTitleBlurTimeOut  : 500,
+        WebsiteTitleFocus        : '(*´∇｀*) 欢迎回来!',
+        WebsiteTitleFocusTimeOut : 1000,
+        WebsiteFavicon           : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/image/website/logo.png',
+
+        ProgressBar: {
+            id       : 'topProgressBar',
+            color    : '#77B6FF',
+            height   : '2px',
+            duration : 0.2
+        },
+
+        Loading: {
+            rebound: {
+                tension  : 16,
+                friction : 5
+            },
+            spinner: {
+                id     : 'spinner',
+                radius : 90,
+                sides  : 3,
+                depth  : 4,
+                colors : {
+                    background : '#F0F0F0',
+                    stroke     : '#272633',
+                    base       : '',
+                    child      : '#272633'
+                },
+                alwaysForward : true,
+                restAt        : 0.5,
+                renderBase    : false
+            }
+        },
+
+        HomeHeaderAnimationRendered : true,
+        HomeHeaderAnimation         : {
+            radius      : 15,
+            density     : 0.2,
+            color       : 'rgba(255, 255, 255, .2)',
+            clearOffset : 0.3
+        },
+
+        ArticleHeaderAnimationRendered : false,
+        ArticleHeaderAnimation         : {
+            triW                  : 14,
+            triH                  : 20,
+            neighbours            : [
+                
+                    'side',
+                
+                    'top',
+                
+                    'bottom',
+                
+            ],
+            speedTrailAppear      : 0.1,
+            speedTrailDisappear   : 0.1,
+            speedTriOpen          : 1,
+            trailMaxLength        : 30,
+            trailIntervalCreation : 100,
+            delayBeforeDisappear  : 2,
+            colors                : [
+                
+                    '#96EDA6',
+                
+                    '#5BC6A9',
+                
+                    '#38668C',
+                
+                    '#374D84',
+                
+                    '#BED5CB',
+                
+                    '#62ADC6',
+                
+                    '#8EE5DE',
+                
+                    '#304E7B',
+                
+            ]
+        },
+
+        BackAnimationRendered          : true,
+        IEBrowserBackAnimationRendered : false,
+        BackAnimation                  : {
+            colorSaturation  : '60%',
+            colorBrightness  : '50%',
+            colorAlpha       : 0.5,
+            colorCycleSpeed  : 5,
+            verticalPosition : 'random',
+            horizontalSpeed  : 200,
+            ribbonCount      : 3,
+            strokeSize       : 0,
+            parallaxAmount   : -0.2,
+            animateSections  : true
+        },
+
+        HomeHeaderImage : [
+            
+                'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/image/header/home.jpg',
+            
+                'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/image/header/home.jpeg',
+            
+        ],
+        HomeBannerText  : '',
+
+        ArticleHeaderImage : [
+            
+                'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/image/header/article.jpg',
+            
+        ],
+
+        OtherBannerText : '',
+
+        MenuList : [
+            
+                {
+                    name   : '首页',
+                    href   : '/',    
+                    target : '',
+                    class  : ''
+                },
+            
+                {
+                    name   : '标签',
+                    href   : '/tag',    
+                    target : '',
+                    class  : ''
+                },
+            
+                {
+                    name   : '分类',
+                    href   : '/category',    
+                    target : '',
+                    class  : ''
+                },
+            
+                {
+                    name   : '归档',
+                    href   : '/archive',    
+                    target : '',
+                    class  : ''
+                },
+            
+                {
+                    name   : '赞赏',
+                    href   : '/donate',    
+                    target : '',
+                    class  : ''
+                },
+            
+                {
+                    name   : '关于',
+                    href   : '/about',    
+                    target : '',
+                    class  : ''
+                },
+            
+                {
+                    name   : '订阅',
+                    href   : '/atom.xml',    
+                    target : '_blank',
+                    class  : ''
+                },
+            
+                {
+                    name   : '搜索',
+                    href   : '',    
+                    target : '',
+                    class  : 'search'
+                },
+            
+                {
+                    name   : '留言板',
+                    href   : '/comment',    
+                    target : '',
+                    class  : ''
+                },
+            
+                {
+                    name   : '友情链接',
+                    href   : '/friend',    
+                    target : '',
+                    class  : ''
+                },
+            
+        ],
+        MenuLink : [
+            
+                
+                    {
+                        icon : 'icon-weibo', 
+                        url  : ''
+                    },
+                
+                    {
+                        icon : 'icon-wechat', 
+                        url  : ''
+                    },
+                
+                    {
+                        icon : 'icon-qq', 
+                        url  : ''
+                    },
+                
+                    {
+                        icon : 'icon-github', 
+                        url  : 'https://github.com/first19326'
+                    },
+                
+            
+        ],
+
+        FooterStyle : 2,
+        BottomText  : {
+            icon    : 'like-fill',
+            left    : '人生若只如初见',
+            right   : '何事秋风悲画扇'
+        },
+        ThemeInfo   : true,
+
+        ConsoleList : [
+            
+                
+                    [
+                        
+                            
+                                'Based on cnblogs theme SimpleMemory.',
+                            
+                                '',
+                            
+                        
+                    ],
+                
+                    [
+                        
+                            
+                                'SimpleMemory Author:',
+                            
+                                'BNDong',
+                            
+                        
+                    ],
+                
+                    [
+                        
+                            
+                                'Theme:',
+                            
+                                'LiveForCode',
+                            
+                        
+                    ],
+                
+            
+        ],
+
+        FontIconExtend : '',
+
+        Donate : {
+            paypal  : '',
+            bitcoin : '',
+            alipay  : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/image/donate/alipay.png',
+            wechat  : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/image/donate/wechat.png'
+        },
+
+        Code : {
+            style : 'normal'
+        },  
+
+        Search : {
+            applicationID : '010C3EANT8',
+            apiKey        : 'c7abab9f11b79102b9aff7fe6d41447d',
+            indexName     : 'Notes',
+            hits          : {
+                page : 10
+            },
+            labels        : {
+                placeholder : '搜索',
+                empty       : '未发现与 「${query}」 相关的内容',
+                stats       : '${hits} 条相关条目，使用了 ${time} 毫秒',
+            }
+        }, 
+
+        Valine : {
+            switch         : true,
+            el             : '.comments-content',
+            appId          : 'srhKtvWPQTWYKh3qX8G8M7v0-gzGzoHsz',
+            appKey         : '8uVSP1q6UlALVC5igYfIfv2h',
+            placeholder    : '你是我一生只会遇见一次的惊喜...',
+            avatar         : 'mm',
+            meta           : 'nick,mail,link',
+            requiredFields : 'nick,mail',
+            pageSize       : 5,
+            lang           : 'zh-cn',
+            visitor        : true,
+            enableQQ       : true
+        },
+
+        Tocbot : {
+            switch                : true,
+            tocSelector           : '.toc',
+            contentSelector       : '.article-body',
+            headingSelector       : 'h1, h2, h3, h4, h5',
+            headingsOffset        : 0,
+            scrollSmooth          : true,
+            scrollSmoothOffset    : -5,
+            positionFixedSelector : '.toc',
+            positionFixedClass    : 'toc-fixed',
+            fixedSidebarOffset    : '',
+        },
+
+        Require : {
+            baseUrl     : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/js/',
+            waitSeconds : 100
+        },
+
+        Music : {
+            type : 'Meting'
+        },
+        APlayer : {
+            container : '.aplayer',
+            fixed     : true,
+            autoplay  : false,
+            loop      : 'all',
+            order     : 'random',
+            preload   : 'auto',
+            volume    : 0.67,
+            mutex     : true,
+            lrcType   : 3,
+            audio     : [
+                
+                    {
+                        name   : 'aLIEz',
+                        artist : 'mizuki（瑞葵）',
+                        cover  : '/music/cover/aLIEz.jpg',
+                        url    : '/music/song/aLIEz.mp3',
+                        lrc    : '/music/lrc/aLIEz.lrc'
+                    },
+                
+                    {
+                        name   : 'Endless Tears',
+                        artist : 'CLIFF EDGE',
+                        cover  : '/music/cover/Endless Tears.jpg',
+                        url    : '/music/song/Endless Tears.mp3',
+                        lrc    : '/music/lrc/Endless Tears.lrc'
+                    },
+                
+                    {
+                        name   : 'Miracle',
+                        artist : 'Cascada',
+                        cover  : '/music/cover/Miracle.jpg',
+                        url    : '/music/song/Miracle.mp3',
+                        lrc    : '/music/lrc/Miracle.lrc'
+                    },
+                
+                    {
+                        name   : 'Roll The Dice',
+                        artist : '高珊',
+                        cover  : '/music/cover/Roll The Dice.jpg',
+                        url    : '/music/song/Roll The Dice.mp3',
+                        lrc    : '/music/lrc/Roll The Dice.lrc'
+                    },
+                
+                    {
+                        name   : 'See You Again',
+                        artist : 'Charlie Puth, Wiz Khalifa',
+                        cover  : '/music/cover/See You Again.jpg',
+                        url    : '/music/song/See You Again.mp3',
+                        lrc    : '/music/lrc/See You Again.lrc'
+                    },
+                
+                    {
+                        name   : 'Traveling Light',
+                        artist : 'Joel Hanson, Sara Groves',
+                        cover  : '/music/cover/Traveling Light.jpg',
+                        url    : '/music/song/Traveling Light.mp3',
+                        lrc    : '/music/lrc/Traveling Light.lrc'
+                    },
+                
+                    {
+                        name   : '痴心绝对',
+                        artist : '李圣杰',
+                        cover  : '/music/cover/痴心绝对.jpg',
+                        url    : '/music/song/痴心绝对.mp3',
+                        lrc    : '/music/lrc/痴心绝对.lrc'
+                    },
+                
+                    {
+                        name   : '好想大声说爱你',
+                        artist : 'BAAD（バード）',
+                        cover  : '/music/cover/好想大声说爱你.jpg',
+                        url    : '/music/song/好想大声说爱你.mp3',
+                        lrc    : '/music/lrc/好想大声说爱你.lrc'
+                    },
+                
+            ]
+        },
+        Meting : {
+            id       : '3778678', 
+            lrcshow  : false, 
+            server   : 'netease', 
+            type     : 'playlist', 
+            fixed    : true, 
+            autoplay : false, 
+            loop     : 'all', 
+            order    : 'random', 
+            preload  : 'auto', 
+            volume   : 0.67, 
+            mutex    : true
+        },
+
+        LazyLoad : {
+            default : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/image/website/lazyload.svg'
+        },
+  
+        Style : {
+            aplayer          : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/css/APlayer.css',
+            archive          : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/css/archive.css',
+            donate           : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/css/donate.css',
+            fancybox         : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/css/jquery.fancybox.css',
+            footer           : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/css/footer.css',
+            iconfont         : 'https://at.alicdn.com/t/font_1546312_l3yohatebw.css',
+            index            : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/css/index.css',
+            menuBubble       : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/css/menu-bubble.css',
+            page             : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/css/page.css',
+            post             : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/css/post.css',
+            search           : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/css/search.css',
+            tocbot           : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/css/tocbot.css',
+            normal           : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/css/normal.css',
+            night            : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/css/night.css',
+            clipboard        : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/css/clipboard.css'
+        },
+
+        Script: {
+            aplayer          : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/js/APlayer.min.js',
+            config           : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/js/require.config.js',
+            index            : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/js/index.js',
+            instantSearch    : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/js/instantsearch.min.js',
+            jQuery           : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/js/jquery-3.4.1.min.js',
+            loading          : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/js/loading.js',
+            meting           : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/js/Meting.min.js',
+            iscroll          : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/js/iscroll.js',
+            require          : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/js/require.min.js'
+        },
+
+        Font: {
+            LongCang   : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/font/LongCang.css',
+            Monda      : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/font/Monda.css',
+            NotoSansSC : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/font/NotoSansSC.css',
+            Playball   : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/font/Playball.css',
+            PTMono     : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/font/PTMono.css',
+            RobotoSlab : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/font/RobotoSlab.css',
+            Rosario    : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/font/Rosario.css',
+            UbuntuMono : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/font/UbuntuMono.css'
+        },
+
+        Suffix : {
+            about : '简单地活着, 肆意又精彩.'
+        },
+            
+        Theme : {
+            url  : 'https://github.com/first19326/Hexo-LiveForCode',
+            name : 'Hexo - Live For Code'
+        }  
+    };
+</script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/js/index.js"></script>
+</body>
+</html>
