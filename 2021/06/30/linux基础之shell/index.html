@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, shrink-to-fit=no">
+    <meta name="referrer" content="origin">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <title>linux基础之shell</title>
+
+    <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/font/LongCang.css">
+    <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/font/Monda.css">
+    <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/font/NotoSansSC.css">
+    <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/font/Playball.css">
+    <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/font/PTMono.css">
+    <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/font/RobotoSlab.css">
+    <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/font/Rosario.css">
+    <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/font/UbuntuMono.css">
+
+    <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/css/post.css">
+    
+        <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/css/normal.css">
+    
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/js/jquery-3.4.1.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+<body>
+    <a id="cover"></a>
+    <div id="header">
+    <div class="header">
+        <div class="vertical">
+            <div class="inner">
+                <h1 class="header-subtitle">linux基础之shell</h1>
+                <div class="header-subinfo">
+                    <p class="article-info-text">
+                        <span>
+                            <i class="iconfont icon-time"></i> 发表时间：2021-06-30
+                        </span>
+                        
+                            <span id="/2021/06/30/linux基础之shell/" class="leancloud_visitors" data-flag-title="linux基础之shell">
+                                <i class="iconfont icon-browse"></i> 阅读：<sapn class="leancloud-visitors-count"></span>
+                            </span>
+                        
+                        <span>
+                            <i class="iconfont icon-interactive"></i> 评论：<span class="valine-comment-count" data-xid="/2021/06/30/linux基础之shell/"></span>
+                        </span>  
+                    </p>                 
+                </div>
+            </div>
+        </div>
+        <canvas id="articleHeaderCanvas"></canvas>
+    </div>
+</div>
+    <div id="container">
+    <div id="content">
+        <div id="article">
+    <div class="toc"></div>
+    <div class="article-body">
+        <h1 id="初识shell"><a href="#初识shell" class="headerlink" title="初识shell:"></a>初识shell:</h1><p>shell相当于用户和系统内核之间的一个翻译官角色，shell脚本可以方便地与系统交互，完成系统管理以及批处理任务。shell处于操作系统与应用之间，起到桥梁的作用。</p>
+<p><img src="https://t11.baidu.com/it/u=624388012,3897924565&fm=173&app=49&f=JPEG?w=473&h=449&s=11B4E7366A42574554923BF9030070AE" alt="img"></p>
+<h2 id="bash-shell："><a href="#bash-shell：" class="headerlink" title="bash shell："></a>bash shell：</h2><p>shell语法:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line">[root@server1 ~]# alias  #查看别名</span><br><span class="line">alias cp=&#x27;cp -i&#x27;</span><br><span class="line">alias egrep=&#x27;egrep --color=auto&#x27;</span><br><span class="line">alias fgrep=&#x27;fgrep --color=auto&#x27;</span><br><span class="line">alias grep=&#x27;grep --color=auto&#x27;</span><br><span class="line">alias l.=&#x27;ls -d .* --color=auto&#x27;</span><br><span class="line">alias ll=&#x27;ls -l --color=auto&#x27;</span><br><span class="line">alias ls=&#x27;ls --color=auto&#x27;</span><br><span class="line">alias mv=&#x27;mv -i&#x27;</span><br><span class="line">alias rm=&#x27;rm -i&#x27;</span><br><span class="line">alias which=&#x27;alias | /usr/bin/which --tty-only --read-alias --show-dot --show-tilde&#x27;</span><br><span class="line"></span><br><span class="line">[root@server1 ~]# alias wl=&#x27;cat /etc/sysconfig/network-scripts/ifcfg-ens33&#x27; #创建别名</span><br><span class="line">[root@server1 ~]# wl</span><br><span class="line">TYPE=&quot;Ethernet&quot;</span><br><span class="line">PROXY_METHOD=&quot;none&quot;</span><br><span class="line">BROWSER_ONLY=&quot;no&quot;</span><br><span class="line">BOOTPROTO=&quot;dhcp&quot;</span><br><span class="line">DEFROUTE=&quot;yes&quot;</span><br><span class="line">IPV4_FAILURE_FATAL=&quot;no&quot;</span><br><span class="line">IPV6INIT=&quot;yes&quot;</span><br><span class="line">IPV6_AUTOCONF=&quot;yes&quot;</span><br><span class="line">IPV6_DEFROUTE=&quot;yes&quot;</span><br><span class="line">IPV6_FAILURE_FATAL=&quot;no&quot;</span><br><span class="line">IPV6_ADDR_GEN_MODE=&quot;stable-privacy&quot;</span><br><span class="line">NAME=&quot;ens33&quot;</span><br><span class="line">UUID=&quot;f6002c62-9265-4937-8e17-7a9d7a2f8a05&quot;</span><br><span class="line">DEVICE=&quot;ens33&quot;</span><br><span class="line">ONBOOT=&quot;yes&quot;</span><br><span class="line">[root@server1 ~]# unalias wl   #取消别名</span><br><span class="line">[root@server1 ~]#ls --help</span><br><span class="line"><span class="meta">#</span><span class="bash">用法 ls [选项]...[文件]...</span></span><br><span class="line">[root@server1 ~]# cat .bashrc</span><br><span class="line"><span class="meta">#</span><span class="bash"> .bashrc</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> User specific aliases and <span class="built_in">functions</span></span></span><br><span class="line"></span><br><span class="line">alias rm=&#x27;rm -i&#x27;</span><br><span class="line">alias cp=&#x27;cp -i&#x27;</span><br><span class="line">alias mv=&#x27;mv -i&#x27;</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> Source global definitions</span></span><br><span class="line">if [ -f /etc/bashrc ]; then</span><br><span class="line">	. /etc/bashrc</span><br><span class="line">fi</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">：/ | ? #查找</span><br><span class="line">：1, 5s/123/456/g  #替换</span><br><span class="line">：0, $/123/456/g   #全局替换</span><br><span class="line">：%/123/456/g      #全局替换</span><br><span class="line">：set nu/nonu    #设置行号</span><br><span class="line">：set sm/nosm    #设置括号匹配</span><br><span class="line">： w               #保存</span><br><span class="line">： w /路径          #另存为</span><br><span class="line"> 自动缩进：</span><br><span class="line"> set ai</span><br><span class="line"> set noai</span><br><span class="line"> vim  ~/.vimrc</span><br><span class="line"> vim /etc/vimrc</span><br><span class="line"> wc test </span><br><span class="line"> wc -l test   #查看行数</span><br><span class="line"> wc -w test   #查看单词数</span><br><span class="line"> wc -c test   #查看字符数</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="命令模式"><a href="#命令模式" class="headerlink" title="命令模式"></a>命令模式</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">a：在光标后输入</span><br><span class="line">i：在光标前输入</span><br><span class="line"></span><br><span class="line">A：在行尾输入入</span><br><span class="line"></span><br><span class="line">I：在行首输入</span><br><span class="line"></span><br><span class="line">O：在光标上一行输入</span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>光标跳转</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">上下左右：kjhl</span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="built_in">command</span>：跳转<span class="comment">#个字符,如2k</span></span></span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>单词跳转</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">w：下个单词的词首</span><br><span class="line">e：当前单词的词尾</span><br><span class="line">b：当前单词的词首</span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="built_in">command</span>：跳转<span class="comment">#个单词</span></span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>行首行尾跳转</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">^：行首（非空白字符）</span><br><span class="line">0：行首</span><br><span class="line"><span class="meta">$</span><span class="bash">：行尾</span></span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li><p>行间移动</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">G：跳转第N行   如2G，跳转到第二行</span></span><br><span class="line">1G：跳转第1行 gg</span><br></pre></td></tr></table></figure></li>
+<li><p>句间/段间移动</p>
+</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">x：删除光标处的字符</span><br><span class="line"><span class="meta">#</span><span class="bash">x：删除光标处起始的<span class="comment">#个字符,光标后的字符</span></span></span><br><span class="line">r：替换命令</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>删除命令</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">d： 删除，配合光标跳转</span><br><span class="line">d^: 删除光标到行首，光标处不删除</span><br><span class="line">d0：删除光标到行首，光标处不删除</span><br><span class="line"><span class="meta">d$</span><span class="bash">: 删除光标到行尾</span></span><br><span class="line">dw：从光标开始删除到当前单词词尾</span><br><span class="line">de：从光标开始删除到当前单词词尾</span><br><span class="line">db：从光标开始删除到当前单词词首</span><br><span class="line">dd： 删除光标所在行</span><br><span class="line"><span class="meta">#</span><span class="bash">dd：删除多行</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>保存退出</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">q: 直接退出</span><br><span class="line">q!:强制退出</span><br><span class="line">x: 保存退出</span><br><span class="line">w: 保存</span><br><span class="line">w /path/to/somefile:另存为</span><br><span class="line">zz； 保存并退出</span><br><span class="line">wq：保存并退出</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>撤销</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"> u:撤销上一次操作</span><br><span class="line"><span class="meta">#</span><span class="bash">u:撤销<span class="comment">#次操作</span></span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>复制粘贴</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"> p:粘贴</span><br><span class="line">yy:复制</span><br><span class="line"><span class="meta">#</span><span class="bash">yy:从光标开始向后复制<span class="comment">#行</span></span></span><br></pre></td></tr></table></figure>
+
+<h3 id="行末模式"><a href="#行末模式" class="headerlink" title="行末模式"></a>行末模式</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">: /或？可以进行全文搜索</span><br><span class="line">n:查找下一个匹配</span><br><span class="line">N:查找上一条匹配</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>定制定界</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">N：第N行</span><br><span class="line">N，M：第N行到第M行</span><br><span class="line">N，+M：第N行到第N+M行</span><br><span class="line">.：当前行</span><br><span class="line"><span class="meta">$</span><span class="bash">：最后一行</span></span><br><span class="line"><span class="meta">%</span><span class="bash">：全文</span></span><br><span class="line">/part1/,/part2/：被part1匹配到被part2匹配</span><br><span class="line">使用方式：后跟一个编辑命令</span><br><span class="line">d/y/</span><br><span class="line">w：将范围内的内容另存为</span><br><span class="line">r：在指定位置插入指定文件的所有内容</span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>查找替换</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[定制定界]s/查找内容/替换内容/修饰符</span><br><span class="line">修饰符：</span><br><span class="line">1,5s/查找内容/替换内容/g</span><br><span class="line"><span class="meta">%</span><span class="bash">s/查找内容/替换内容/g   <span class="comment">#替换全部内容</span></span></span><br><span class="line">0,$s/查找内容/替换内容/g  #替换全部内容</span><br><span class="line">i：忽略大小写</span><br><span class="line">g：全局替换，默认情况，只替换每一行第一次出现</span><br><span class="line"><span class="meta">#</span><span class="bash">：也可以作为分隔符，此时/不会作为分隔符</span></span><br></pre></td></tr></table></figure>
+
+<p>定制Vim</p>
+<p>配置文件：永久有效</p>
+<p>全局：/etc/vimrc</p>
+<p>个人：~/.vimrc</p>
+<p>行末：当前进程有效</p>
+<h2 id="行号"><a href="#行号" class="headerlink" title="行号"></a>行号</h2><p>显示：set number，简写为set nu</p>
+<p>取消显示：set nonumber，简写为set nonu</p>
+<p>括号匹配</p>
+<p>匹配：set showmatch，简写为set sm</p>
+<p>取消：set nosm</p>
+<p>自动缩进</p>
+<p>启用：set ai</p>
+<p>禁用：set noai</p>
+<p>高亮搜索</p>
+<p>启用：set hlsearch</p>
+<p>禁用：set nohlsearch</p>
+<p>语法高亮</p>
+<p>启用：syntax on</p>
+<p>禁用：syntax off</p>
+<p>设置缩进长度：set ts=4</p>
+<h2 id="创建目录"><a href="#创建目录" class="headerlink" title="创建目录"></a>创建目录</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">mkdir:创建目录</span><br><span class="line">    -p:递归创建</span><br><span class="line">    -v:显示创建过程</span><br><span class="line">rmdir：删除目录</span><br><span class="line">     -p:递归删除</span><br><span class="line">     -v:显示删除过程</span><br><span class="line">     rm :删除命令</span><br><span class="line">选项</span><br><span class="line">-d：直接把欲删除的目录的硬连接数据删除成0，删除该目录；</span><br><span class="line">-f：强制删除文件或目录；</span><br><span class="line">-i：删除已有文件或目录之前先询问用户；</span><br><span class="line">-r或-R：递归处理，将指定目录下的所有文件与子目录一并处理；</span><br><span class="line">-v：显示指令的详细执行过程</span><br><span class="line">cat：一次性查看所有内容，文件较大时会占用io</span><br><span class="line">tac：同cat，不同是从文件末尾查看</span><br><span class="line">more：一次性加载部分内容，翻页时才会查看其余内容，不会占用io，回车翻一行，空格一页</span><br><span class="line">less：</span><br><span class="line">stat file； 查看文件</span><br><span class="line">head</span><br><span class="line">-c 读取前多少个字节内容</span><br><span class="line">-n 读前多少行内容，默认十行</span><br><span class="line">tail </span><br><span class="line">-c 读取后多少个字节内容</span><br><span class="line">-n 读取后多少c行</span><br><span class="line">-f  动态跟踪</span><br><span class="line"></span><br><span class="line">时间戳：计算机元年到现在的秒数</span><br><span class="line">atime:（access time）显示的是文件中的数据最后被访问的时间，比如系统</span><br><span class="line"></span><br><span class="line">的进程直接使用或通过一些命令和脚本间接使用。（执行一些可执行文件或脚本）</span><br><span class="line"></span><br><span class="line">mtime: （modify time）显示的是文件内容被修改的最后时间，比如用vi编辑</span><br><span class="line"></span><br><span class="line">时就会被改变。（也就是Block的内容）</span><br><span class="line"></span><br><span class="line">ctime: （change time）显示的是文件的权限、拥有者、所属的组、链接数发</span><br><span class="line"></span><br><span class="line">生改变时的时间。当然当内容改变时也会随之改变（即inode内容发生改变和Block内容</span><br><span class="line">发生改变时）</span><br><span class="line">touch:</span><br><span class="line">    -a；只更改atime</span><br><span class="line">    -m:只更改atime</span><br><span class="line">    -t:指定更改时</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">~/.bash_history</span><br><span class="line">history -a 追加</span><br><span class="line">history -c 删除所有历史命令</span><br><span class="line">history -d 删除指定历史命令</span><br><span class="line">help history</span><br><span class="line">ll -t 按时间排序</span><br><span class="line">ll -b 显示备份文件</span><br><span class="line">ll -i 显示inde号</span><br><span class="line">type ls     #查看命令类型</span><br><span class="line">whereis ls   #查看命令位置，查看到相关所有文件</span><br><span class="line">which ls   #查找命令 </span><br><span class="line">id zhangsan   #判断用户是否存在</span><br><span class="line">echo $?       0成功，非0失败</span><br><span class="line">scp /path root@192.168.30.12：路径  #发送文件</span><br></pre></td></tr></table></figure>
+
+<h1 id="文件链接"><a href="#文件链接" class="headerlink" title="文件链接"></a>文件链接</h1><h2 id="软连接："><a href="#软连接：" class="headerlink" title="软连接："></a>软连接：</h2><h3 id="特点："><a href="#特点：" class="headerlink" title="特点："></a>特点：</h3><p>不论是修改源文件，还是修改软连接文件，所有文件的内容均会改变</p>
+<p>删除软链接文件，源文件不受影响，如果删除源文件，软连接文件会失效，显示红色状态</p>
+<p>软连接文件拥有自己的inode节点，在数据块中存储的是源文件的路径</p>
+<p>软连接文件可以跨越文件系统（分区）进行建立</p>
+<p>软连接可以链接目录</p>
+<p><strong>类似windons的快捷方式</strong></p>
+<h2 id="硬链接："><a href="#硬链接：" class="headerlink" title="硬链接："></a>硬链接：</h2><h3 id="特点：-1"><a href="#特点：-1" class="headerlink" title="特点："></a>特点：</h3><p>不论修改源文件，还是硬链接文件，所有文件的内容均改变</p>
+<p>不论是删除源文件，还是删除硬链接文件，只要还有一个文件存在，这个文件就可以被访问到</p>
+<p>硬链接文件不会建立新的inode节点，也不会更改inode总数，只能为同一个inode节点分配多个文件名</p>
+<p>硬链接文件不能跨越文件系统（分区）建立，因为不同的文件系统中inode是会被重新分配的</p>
+<p>硬链接文件不能建立目录</p>
+<p>读取一个文件，是通过文件名找到inode节点，然后</p>
+<p>通过inode节点读取真正的文件内容</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ln命令：创建链接文件</span><br><span class="line">	-s：建立软连接文件，默认情况是创建硬链接</span><br><span class="line">	-f:强制</span><br><span class="line">ln -s 源文件绝对路径 软链接文件名称</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="重定向"><a href="#重定向" class="headerlink" title="重定向"></a>重定向</h1><p>文件描述符<br>    在Linux中一切皆文件<br>    每打开或者新建一个文件会有一个文件描述符与之对应<br>    文件描述符是非负整数<br>    读写文件需要使用文件描述符来指定待读写的文件</p>
+<p>输入输出<br>    标准输入<br>    标准正确输出1<br>    标准错误输出2</p>
+<p>输出重定向<br>    覆盖重定向<br>        正确覆盖重定向: &gt;<br>        错误覆盖重定向: 2&gt;<br>    追加重定向<br>        正确追加重定向: &gt;&gt;<br>        错误追加重定向: 2&gt;&gt;</p>
+<p>合并标准正确输出和标准错误输出为同一个数据流进行重定向<br>    &amp;&gt;: 标准覆盖重定向<br>    &amp;&gt;&gt;: 标准追加重定向<br>    2&gt;&amp;1: 错误流重定向到正确流中<br>    1&gt;&amp;2: 正确流重定向到错误流中</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">[root@server1 ~]# lln 1&gt;out.right 2&gt;&amp;1</span><br><span class="line">[root@server1 ~]# cat out.right </span><br><span class="line">-bash: lln: 未找到命令</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">标准输入：</span><br><span class="line"></span><br><span class="line">​```shell</span><br><span class="line">[root@server1 ~]# cat &gt; file_in &lt;&lt; EOF</span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> 太阳当空照</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> 花儿对我笑</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> EOF</span></span><br><span class="line">[root@server1 ~]# cat &gt;&gt; file_in &lt;&lt;EOF</span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> 小鸟说</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> 早早早</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> EOF</span></span><br><span class="line">[root@server1 ~]# cat file_in</span><br><span class="line">太阳当空照</span><br><span class="line">花儿对我笑</span><br><span class="line">小鸟说</span><br><span class="line">早早早</span><br><span class="line">[root@server1 ~]# id zhangsan &gt; /dev/null/</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="管道"><a href="#管道" class="headerlink" title="管道"></a>管道</h2><p>​    使用方式</p>
+<p>​    命令1 | 命令2 | 命令3</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# head /etc/passwd -n 5 | tr &#x27;a-z&#x27; &#x27;A-Z&#x27; &gt; /root/passwd.out</span><br><span class="line">wc命令</span><br><span class="line">	统计</span><br><span class="line">	-l：显示行数</span><br><span class="line">	-w：显示单词数</span><br><span class="line">	-c：显示字符数</span><br><span class="line">cut命令</span><br><span class="line">	对文档内容进行分割</span><br><span class="line">	-d：指定分割符</span><br><span class="line">	-f：指定字段</span><br><span class="line">sort命令</span><br><span class="line">	排序</span><br><span class="line">	-f：忽略大小写</span><br><span class="line">	-r：逆序</span><br><span class="line">	-t：字段分割符</span><br><span class="line">	-k：以指定字段为标准进行排序</span><br><span class="line">	-n：以数值进行排序</span><br><span class="line">	-u：排序后去重</span><br><span class="line">uniq命令</span><br><span class="line">	去重</span><br><span class="line">	-c：显示每行重复出现的次数</span><br><span class="line">	-d：仅显示重复过的行</span><br><span class="line">	-u：仅仅显示不曾重复过的行</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">案例</span><br><span class="line">以冒号为分隔符，取出/etc/passwd文件中的第六列至第十列，并将这些信息按照第三个字段的数值大小进行排序，最后仅显示</span><br><span class="line">	一个字段，并且统计总字符数</span><br><span class="line">[root@localhost ~]# cut -d: -f6-10 /etc/passwd | cut -d/ -f3 | sort -n| uniq -c</span><br><span class="line">查看centos版本号</span><br><span class="line">cat /etc/centos-release    </span><br></pre></td></tr></table></figure>
+
+
+        <p class="suffix-end">__END__</p>
+        <div class="suffix-box">
+            <div class="suffix-box-left">
+                <img src="https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/image/sidebar/avatar.jpg" alt="Live For Code">
+            </div>
+            <div class="suffix-box-right">
+                <span class="suffix-box-title">文章作者</span>：Live For Code
+                <br>
+                <span class="suffix-box-title">文章出处</span>：<a href="/2021/06/30/linux%E5%9F%BA%E7%A1%80%E4%B9%8Bshell/" target="_blank">linux基础之shell</a>
+                <br>
+                <span class="suffix-box-title">作者签名</span>：简单地活着, 肆意又精彩.
+                <br>
+                <span class="suffix-box-title">关于主题</span>：<a href="https://github.com/first19326/Hexo-LiveForCode" target="_blank">Areal'heng</a>
+                <br>
+                <span class="suffix-box-title">版权声明</span>：文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" title="BY-NC-SA" target="_blank">BY-NC-SA</a> 许可协议，转载请注明出处
+                <br>
+            </div>
+            <div style="clear: both;"></div>
+        </div>
+    </div>
+    <div class="article-footer">
+        
+        
+            <div class="tag">
+                标签：
+                
+                    <a href="/tags/%E6%9E%9C%E7%84%B6%E6%88%91%E6%9C%80%E5%B8%85/">果然我最帅</a>
+                
+            </div>
+        
+        <div class="article-prev-next">
+            
+                <a href="/2021/06/30/%E7%A7%91%E6%AF%94/" class="prev-prefix">« </a> 上一篇：    <a href="/2021/06/30/%E7%A7%91%E6%AF%94/" title="发布于 2021-06-30 08:15">科比</a>
+                <br>
+            
+            
+                <a href="/2021/06/30/socket/" class="next-prefix">» </a> 下一篇：    <a href="/2021/06/30/socket/" title="发布于 2021-06-30 08:04">soceket</a>
+            
+        </div>
+    </div>
+    
+    <div class="article-comments">
+        <div class="comments-title">
+            评论列表
+        </div>
+        <div class="comments-content">
+        </div>
+    </div>
+
+</div>
+
+    </div>
+</div>
+    <div id="footer"></div>
+    <div id="sidebar">
+    <div class="menu-wrap" style="display:none;">
+        <nav class="menu">
+            <div class="menu-introduce"> 
+                <div class="introduce-avatar"></div> 
+                <div class="introduce-info"> 
+                    <div class="introduce-user"><span></span></div>        
+                </div> 
+            </div> 
+            <div class="menu-list">
+                <ul></ul> 
+            </div> 
+            <div class="menu-link"></div> 
+        </nav>
+        <button class="menu-button-close"></button>
+        <div class="morph-shape" id="morph-shape" data-morph-open="M-7.312,0H15c0,0,66,113.339,66,399.5C81,664.006,15,800,15,800H-7.312V0z;M-7.312,0H100c0,0,0,113.839,0,400c0,264.506,0,400,0,400H-7.312V0z">
+            <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 100 800" preserveAspectRatio="none">
+                <path d="M-7.312,0H0c0,0,0,113.839,0,400c0,264.506,0,400,0,400h-7.312V0z"/>
+            </svg>
+        </div>
+    </div>
+    <button class="menu-button-open">MENU</button>
+    <div class="menu-cover"></div>
+</div>
+    <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/css/search.css">
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/js/iscroll.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/js/instantsearch.min.js"></script>
+<div class="search-window">
+    <div class="search-content">
+        <div class="search-content-icon">
+            <i class="iconfont icon-search"></i>
+        </div>
+        <div id="search-input" class="search-input"></div>
+    </div>
+
+    <div class="search-scroll">
+        <div class="search-result">
+            <div id="search-stats" class="search-stats"></div>
+            <div id="search-hits"></div>
+            <div id="search-pagination" class="search-pagination"></div>
+        </div>
+    </div>
+
+    <span class="search-close-icon">
+        <i class="iconfont icon-close"></i>
+    </span>
+</div>
+    <div id="tools">
+    <div class="progressbar-top"></div>
+
+    
+        <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/css/APlayer.css">
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/js/APlayer.min.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/js/Meting.min.js"></script>
+        <meting-js id="3778678" lrcshow="false" server="netease" type="playlist" fixed="true" autoplay="false" loop="all" order="random" preload="auto" volume="0.67" mutex="true"></meting-js>
+    
+    
+    <div class="wrap-right"></div>
+    <div class="loading"></div>
+</div>
+    <script>
+    window.config = {
+        GitHubUserName     : 'first19326',
+        GitHubRepositories : 'Hexo-LiveForCode',
+
+        BlogUser      : 'Live For Code',
+        BlogAvatar    : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/image/sidebar/avatar.jpg',
+        BlogStartDate : '2020-01-01',
+
+        WebsiteTitleBlur         : '(◍´꒳`◍) Hi, Live For Code',
+        WebsiteTitleBlurTimeOut  : 500,
+        WebsiteTitleFocus        : '(*´∇｀*) 欢迎回来!',
+        WebsiteTitleFocusTimeOut : 1000,
+        WebsiteFavicon           : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/image/website/logo.png',
+
+        ProgressBar: {
+            id       : 'topProgressBar',
+            color    : '#77B6FF',
+            height   : '2px',
+            duration : 0.2
+        },
+
+        Loading: {
+            rebound: {
+                tension  : 16,
+                friction : 5
+            },
+            spinner: {
+                id     : 'spinner',
+                radius : 90,
+                sides  : 3,
+                depth  : 4,
+                colors : {
+                    background : '#F0F0F0',
+                    stroke     : '#272633',
+                    base       : '',
+                    child      : '#272633'
+                },
+                alwaysForward : true,
+                restAt        : 0.5,
+                renderBase    : false
+            }
+        },
+
+        HomeHeaderAnimationRendered : true,
+        HomeHeaderAnimation         : {
+            radius      : 15,
+            density     : 0.2,
+            color       : 'rgba(255, 255, 255, .2)',
+            clearOffset : 0.3
+        },
+
+        ArticleHeaderAnimationRendered : false,
+        ArticleHeaderAnimation         : {
+            triW                  : 14,
+            triH                  : 20,
+            neighbours            : [
+                
+                    'side',
+                
+                    'top',
+                
+                    'bottom',
+                
+            ],
+            speedTrailAppear      : 0.1,
+            speedTrailDisappear   : 0.1,
+            speedTriOpen          : 1,
+            trailMaxLength        : 30,
+            trailIntervalCreation : 100,
+            delayBeforeDisappear  : 2,
+            colors                : [
+                
+                    '#96EDA6',
+                
+                    '#5BC6A9',
+                
+                    '#38668C',
+                
+                    '#374D84',
+                
+                    '#BED5CB',
+                
+                    '#62ADC6',
+                
+                    '#8EE5DE',
+                
+                    '#304E7B',
+                
+            ]
+        },
+
+        BackAnimationRendered          : true,
+        IEBrowserBackAnimationRendered : false,
+        BackAnimation                  : {
+            colorSaturation  : '60%',
+            colorBrightness  : '50%',
+            colorAlpha       : 0.5,
+            colorCycleSpeed  : 5,
+            verticalPosition : 'random',
+            horizontalSpeed  : 200,
+            ribbonCount      : 3,
+            strokeSize       : 0,
+            parallaxAmount   : -0.2,
+            animateSections  : true
+        },
+
+        HomeHeaderImage : [
+            
+                'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/image/header/home.jpg',
+            
+                'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/image/header/home.jpeg',
+            
+        ],
+        HomeBannerText  : '',
+
+        ArticleHeaderImage : [
+            
+                'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/image/header/article.jpg',
+            
+        ],
+
+        OtherBannerText : '',
+
+        MenuList : [
+            
+                {
+                    name   : '首页',
+                    href   : '/',    
+                    target : '',
+                    class  : ''
+                },
+            
+                {
+                    name   : '标签',
+                    href   : '/tag',    
+                    target : '',
+                    class  : ''
+                },
+            
+                {
+                    name   : '分类',
+                    href   : '/category',    
+                    target : '',
+                    class  : ''
+                },
+            
+                {
+                    name   : '归档',
+                    href   : '/archive',    
+                    target : '',
+                    class  : ''
+                },
+            
+                {
+                    name   : '赞赏',
+                    href   : '/donate',    
+                    target : '',
+                    class  : ''
+                },
+            
+                {
+                    name   : '关于',
+                    href   : '/about',    
+                    target : '',
+                    class  : ''
+                },
+            
+                {
+                    name   : '订阅',
+                    href   : '/atom.xml',    
+                    target : '_blank',
+                    class  : ''
+                },
+            
+                {
+                    name   : '搜索',
+                    href   : '',    
+                    target : '',
+                    class  : 'search'
+                },
+            
+                {
+                    name   : '留言板',
+                    href   : '/comment',    
+                    target : '',
+                    class  : ''
+                },
+            
+                {
+                    name   : '友情链接',
+                    href   : '/friend',    
+                    target : '',
+                    class  : ''
+                },
+            
+        ],
+        MenuLink : [
+            
+                
+                    {
+                        icon : 'icon-weibo', 
+                        url  : ''
+                    },
+                
+                    {
+                        icon : 'icon-wechat', 
+                        url  : ''
+                    },
+                
+                    {
+                        icon : 'icon-qq', 
+                        url  : ''
+                    },
+                
+                    {
+                        icon : 'icon-github', 
+                        url  : 'https://github.com/first19326'
+                    },
+                
+            
+        ],
+
+        FooterStyle : 2,
+        BottomText  : {
+            icon    : 'like-fill',
+            left    : '人生若只如初见',
+            right   : '何事秋风悲画扇'
+        },
+        ThemeInfo   : true,
+
+        ConsoleList : [
+            
+                
+                    [
+                        
+                            
+                                'Based on cnblogs theme SimpleMemory.',
+                            
+                                '',
+                            
+                        
+                    ],
+                
+                    [
+                        
+                            
+                                'SimpleMemory Author:',
+                            
+                                'BNDong',
+                            
+                        
+                    ],
+                
+                    [
+                        
+                            
+                                'Theme:',
+                            
+                                'LiveForCode',
+                            
+                        
+                    ],
+                
+            
+        ],
+
+        FontIconExtend : '',
+
+        Donate : {
+            paypal  : '',
+            bitcoin : '',
+            alipay  : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/image/donate/alipay.png',
+            wechat  : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/image/donate/wechat.png'
+        },
+
+        Code : {
+            style : 'normal'
+        },  
+
+        Search : {
+            applicationID : '010C3EANT8',
+            apiKey        : 'c7abab9f11b79102b9aff7fe6d41447d',
+            indexName     : 'Notes',
+            hits          : {
+                page : 10
+            },
+            labels        : {
+                placeholder : '搜索',
+                empty       : '未发现与 「${query}」 相关的内容',
+                stats       : '${hits} 条相关条目，使用了 ${time} 毫秒',
+            }
+        }, 
+
+        Valine : {
+            switch         : true,
+            el             : '.comments-content',
+            appId          : 'srhKtvWPQTWYKh3qX8G8M7v0-gzGzoHsz',
+            appKey         : '8uVSP1q6UlALVC5igYfIfv2h',
+            placeholder    : '你是我一生只会遇见一次的惊喜...',
+            avatar         : 'mm',
+            meta           : 'nick,mail,link',
+            requiredFields : 'nick,mail',
+            pageSize       : 5,
+            lang           : 'zh-cn',
+            visitor        : true,
+            enableQQ       : true
+        },
+
+        Tocbot : {
+            switch                : true,
+            tocSelector           : '.toc',
+            contentSelector       : '.article-body',
+            headingSelector       : 'h1, h2, h3, h4, h5',
+            headingsOffset        : 0,
+            scrollSmooth          : true,
+            scrollSmoothOffset    : -5,
+            positionFixedSelector : '.toc',
+            positionFixedClass    : 'toc-fixed',
+            fixedSidebarOffset    : '',
+        },
+
+        Require : {
+            baseUrl     : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/js/',
+            waitSeconds : 100
+        },
+
+        Music : {
+            type : 'Meting'
+        },
+        APlayer : {
+            container : '.aplayer',
+            fixed     : true,
+            autoplay  : false,
+            loop      : 'all',
+            order     : 'random',
+            preload   : 'auto',
+            volume    : 0.67,
+            mutex     : true,
+            lrcType   : 3,
+            audio     : [
+                
+                    {
+                        name   : 'aLIEz',
+                        artist : 'mizuki（瑞葵）',
+                        cover  : '/music/cover/aLIEz.jpg',
+                        url    : '/music/song/aLIEz.mp3',
+                        lrc    : '/music/lrc/aLIEz.lrc'
+                    },
+                
+                    {
+                        name   : 'Endless Tears',
+                        artist : 'CLIFF EDGE',
+                        cover  : '/music/cover/Endless Tears.jpg',
+                        url    : '/music/song/Endless Tears.mp3',
+                        lrc    : '/music/lrc/Endless Tears.lrc'
+                    },
+                
+                    {
+                        name   : 'Miracle',
+                        artist : 'Cascada',
+                        cover  : '/music/cover/Miracle.jpg',
+                        url    : '/music/song/Miracle.mp3',
+                        lrc    : '/music/lrc/Miracle.lrc'
+                    },
+                
+                    {
+                        name   : 'Roll The Dice',
+                        artist : '高珊',
+                        cover  : '/music/cover/Roll The Dice.jpg',
+                        url    : '/music/song/Roll The Dice.mp3',
+                        lrc    : '/music/lrc/Roll The Dice.lrc'
+                    },
+                
+                    {
+                        name   : 'See You Again',
+                        artist : 'Charlie Puth, Wiz Khalifa',
+                        cover  : '/music/cover/See You Again.jpg',
+                        url    : '/music/song/See You Again.mp3',
+                        lrc    : '/music/lrc/See You Again.lrc'
+                    },
+                
+                    {
+                        name   : 'Traveling Light',
+                        artist : 'Joel Hanson, Sara Groves',
+                        cover  : '/music/cover/Traveling Light.jpg',
+                        url    : '/music/song/Traveling Light.mp3',
+                        lrc    : '/music/lrc/Traveling Light.lrc'
+                    },
+                
+                    {
+                        name   : '痴心绝对',
+                        artist : '李圣杰',
+                        cover  : '/music/cover/痴心绝对.jpg',
+                        url    : '/music/song/痴心绝对.mp3',
+                        lrc    : '/music/lrc/痴心绝对.lrc'
+                    },
+                
+                    {
+                        name   : '好想大声说爱你',
+                        artist : 'BAAD（バード）',
+                        cover  : '/music/cover/好想大声说爱你.jpg',
+                        url    : '/music/song/好想大声说爱你.mp3',
+                        lrc    : '/music/lrc/好想大声说爱你.lrc'
+                    },
+                
+            ]
+        },
+        Meting : {
+            id       : '3778678', 
+            lrcshow  : false, 
+            server   : 'netease', 
+            type     : 'playlist', 
+            fixed    : true, 
+            autoplay : false, 
+            loop     : 'all', 
+            order    : 'random', 
+            preload  : 'auto', 
+            volume   : 0.67, 
+            mutex    : true
+        },
+
+        LazyLoad : {
+            default : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/image/website/lazyload.svg'
+        },
+  
+        Style : {
+            aplayer          : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/css/APlayer.css',
+            archive          : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/css/archive.css',
+            donate           : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/css/donate.css',
+            fancybox         : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/css/jquery.fancybox.css',
+            footer           : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/css/footer.css',
+            iconfont         : 'https://at.alicdn.com/t/font_1546312_l3yohatebw.css',
+            index            : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/css/index.css',
+            menuBubble       : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/css/menu-bubble.css',
+            page             : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/css/page.css',
+            post             : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/css/post.css',
+            search           : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/css/search.css',
+            tocbot           : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/css/tocbot.css',
+            normal           : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/css/normal.css',
+            night            : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/css/night.css',
+            clipboard        : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/css/clipboard.css'
+        },
+
+        Script: {
+            aplayer          : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/js/APlayer.min.js',
+            config           : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/js/require.config.js',
+            index            : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/js/index.js',
+            instantSearch    : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/js/instantsearch.min.js',
+            jQuery           : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/js/jquery-3.4.1.min.js',
+            loading          : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/js/loading.js',
+            meting           : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/js/Meting.min.js',
+            iscroll          : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/js/iscroll.js',
+            require          : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/js/require.min.js'
+        },
+
+        Font: {
+            LongCang   : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/font/LongCang.css',
+            Monda      : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/font/Monda.css',
+            NotoSansSC : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/font/NotoSansSC.css',
+            Playball   : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/font/Playball.css',
+            PTMono     : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/font/PTMono.css',
+            RobotoSlab : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/font/RobotoSlab.css',
+            Rosario    : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/font/Rosario.css',
+            UbuntuMono : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/font/UbuntuMono.css'
+        },
+
+        Suffix : {
+            about : '简单地活着, 肆意又精彩.'
+        },
+            
+        Theme : {
+            url  : 'https://github.com/first19326/Hexo-LiveForCode',
+            name : 'Areal&#39;heng'
+        }  
+    };
+</script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/js/index.js"></script>
+</body>
+</html>
